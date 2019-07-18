@@ -29,7 +29,7 @@ class App extends React.Component {
     }
 
     this.addIngredient = this.addIngredient.bind( this );
-    //this.clearBurger = this.clearBurger.bind( this );
+    this.clearBurger = this.clearBurger.bind( this );
   }
 
   addIngredient(e, i){
@@ -40,7 +40,12 @@ class App extends React.Component {
       stack: stackCopy
     })
   }
-  //clearBurger =() =>
+  clearStack(e) {
+    e.preventDefault();
+    this.setState({
+      stack: []
+    })
+  }
 
   render () {
     const listCopy = Array.from(this.state.ingredients);
@@ -48,7 +53,7 @@ class App extends React.Component {
     return (
       <>
         <IngredientList ingredients={listCopy} addIngredient={this.state.newIngredient}/>
-        <BurgerStack clickedIngredient={stackCopy}/>
+        <BurgerStack usedIngredient={stackCopy}/>
       </>
     )
   }
